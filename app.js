@@ -66,7 +66,7 @@ start.addEventListener('click', ()=>{
 
 const checkDownRestriction = (i)=>{
 
-    for(let j = col - 1; j <= totalCells; j += col)
+    for(let j = col - 1; j <= totalCells; j += col)//restricting cell checking when at the first cell of a row
     {
         if(i == j)
         {
@@ -77,7 +77,7 @@ const checkDownRestriction = (i)=>{
 
 const checkUpRestriction = (i)=>{
 
-    for(let j = 0; j <= totalCells - col + 1; j += col)
+    for(let j = 0; j <= totalCells - col + 1; j += col)//restricting cell checking when at the last cell of a row
     {
         if(i == j)
         {
