@@ -1,8 +1,8 @@
 const start = document.querySelector('.start-btn');
 const cells = document.querySelectorAll('.grid');
 const totalCells = cells.length;
-// const row = 15;
-const col = 15;
+// const row = 20;
+const col = 20;
 let gameStateArray = [];
 
 //setting all the cells as or false or dead
