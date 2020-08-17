@@ -5,7 +5,7 @@ const totalCells = cells.length;
 const col = 20;
 let gameStateArray = [];
 
-//setting all the cells as or false or dead
+//setting all the cells as false or dead
 for(let i = 0; i < totalCells; i++)
 {
     gameStateArray[i] = false;
@@ -41,6 +41,7 @@ for(let i = 0; i < totalCells; i++)
 
 let InGameStateArray = [];//tracks the in game changes
 
+//starting the game
 start.addEventListener('click', ()=>{
     setInterval(()=>{
 
@@ -92,19 +93,21 @@ const checkGameState = ()=>{
         let surroundingCellCounter = 0;
 
         //sets restriction when a live cell is at the last cell of the row
-        let downTheGridByRightCellRestrict = false;
-        downTheGridByRightCellRestrict = checkDownRestriction(i);
+        let atTheEndOfRow = false;
+        atTheEndOfRow = checkDownRestriction(i);
 
-        if(gameStateArray[i + 1] && !downTheGridByRightCellRestrict)
+        //checks the right cell
+        if(gameStateArray[i + 1] && !atTheEndOfRow)
         {
             surroundingCellCounter++;
         }
 
         //sets restrictions when a live cell is at the beginning of the row
-        let upTheGridByLeftCellRestrict = false;
-        upTheGridByLeftCellRestrict = checkUpRestriction(i);
+        let atTheBeginningOfRow = false;
+        atTheBeginningOfRow = checkUpRestriction(i);
 
-        if(gameStateArray[i - 1] && !upTheGridByLeftCellRestrict)
+        //checks the left cell
+        if(gameStateArray[i - 1] && !atTheBeginningOfRow)
         {
             surroundingCellCounter++;
         }
@@ -113,17 +116,18 @@ const checkGameState = ()=>{
         {
             let downTheGrid = (i + (col - 1)) + j;
 
-            if(gameStateArray[downTheGrid])
+            if(gameStateArray[downTheGrid])//checks cells below the cell
             {
                 if(downTheGrid == i + col)
                 {
                     surroundingCellCounter++;
                 }
-                else if(!upTheGridByLeftCellRestrict && downTheGrid == i + col - 1)
+                //restricts down check when at the beginning of a row
+                else if(!atTheBeginningOfRow && downTheGrid == i + col - 1)
                 {
                     surroundingCellCounter++;
                 }
-                else if(!downTheGridByRightCellRestrict && downTheGrid == i + col + 1)
+                else if(!atTheEndOfRow && downTheGrid == i + col + 1)
                 {
                     surroundingCellCounter++;
                 }
@@ -140,11 +144,11 @@ const checkGameState = ()=>{
                 {
                     surroundingCellCounter++;
                 }
-                else if(!downTheGridByRightCellRestrict && upTheGrid == i - col + 1)
+                else if(!atTheEndOfRow && upTheGrid == i - col + 1)
                 {
                     surroundingCellCounter++;
                 }
-                else if(!upTheGridByLeftCellRestrict && upTheGrid == i - col - 1)
+                else if(!atTheBeginningOfRow && upTheGrid == i - col - 1)
                 {
                     surroundingCellCounter++;
                 }
@@ -153,13 +157,13 @@ const checkGameState = ()=>{
         }
 
         //checking the state of the cell and updating the grid
-        InGameStateArrayUpdate(surroundingCellCounter, i);
+        inGameStateArrayUpdate(surroundingCellCounter, i);
 
     }
 }
 
-const InGameStateArrayUpdate = (surroundingCellCounter, i)=>{
-    if(surroundingCellCounter < 2 || surroundingCellCounter >3)
+const inGameStateArrayUpdate = (surroundingCellCounter, i)=>{
+    if(surroundingCellCounter < 2 || surroundingCellCounter > 3)
     {
         InGameStateArray[i] = false;
     }
