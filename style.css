@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+}
+
 .container{
     display: flex;
     flex-wrap: wrap;
@@ -14,17 +18,19 @@
 }
 
 .gen-speed{
-    width: 700px;
+    width: 500px;
     padding: 5px;
+    float: right;
+    margin-bottom: 20px;
 }
 
 .gen{
-    width: 350px;
+    width: 250px;
     float: left;
 }
 
 .spd{
-    width: 350px;
+    width: 250px;
     float: right;
 }
 
@@ -35,4 +41,10 @@ img{
 
 .images{
     float: right;
+    margin-bottom: 20px;
+}
+
+.btns{
+    float: right;
+    width: 500px;
 }
