@@ -9,7 +9,7 @@
 <body>
 
     <header>
-       <h1>Game of Life</h1>
+       <h3>Conway's Game of Life</h3>
     </header>
     
     <div class="container">
@@ -455,7 +455,24 @@
         <div class="grid"></div>
     </div>
 
-    <button class="start-btn">Start</button>
+    <div class="gen-speed">
+        <div class="gen">
+            Generation: <span class="generation"></span> 
+        </div>
+
+        <div class="spd">
+            Speed : <span class="speed"></span>
+        </div>
+        
+        
+    </div>
+    <button class="next-btn">Next</button>
+    <button class="auto-btn">Auto</button>
+    <button class="speedup-btn">Speed Up</button>
+    <button class="speeddown-btn">Speed Down</button>
+    <button class="stop-btn">Stop</button>
+    <button class="reset-btn">Reset</button>
+    
 
     <script src="app.js"></script>
 </body>

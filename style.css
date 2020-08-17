@@ -4,7 +4,6 @@
     width: 700px;
     height: 700px;
     border: black 1px solid;
-    margin-bottom: 10px;
 }
 
 .grid{
@@ -13,3 +12,17 @@
     height: 35px;
 }
 
+.gen-speed{
+    width: 700px;
+    padding: 5px;
+}
+
+.gen{
+    width: 350px;
+    float: left;
+}
+
+.spd{
+    width: 350px;
+    float: right;
+}
