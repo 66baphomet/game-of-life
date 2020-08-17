@@ -3,6 +3,8 @@ const auto = document.querySelector('.auto-btn');
 const speedUp = document.querySelector('.speedup-btn');
 const speedDown = document.querySelector('.speeddown-btn');
 const stop = document.querySelector('.stop-btn');
+const reset = document.querySelector('.reset-btn');
+//buttons ends
 const cells = document.querySelectorAll('.grid');
 const totalCells = cells.length;
 // const row = 20;
@@ -79,36 +81,7 @@ let AutoStartBool = true;
 let intervalTime = 300;
 
 auto.addEventListener('click', () => {
-
-    if (AutoStartBool) {
-        AutoStartBool = false;
-
-        AutoGenInterval = setInterval(() => {
-
-            for (let i = 0; i < totalCells; i++)//resetting the in game state at every generation
-            {
-                InGameStateArray[i] = false;
-            }
-
-            //checking game state
-            checkGameState();
-
-            //updating gameStateArray
-            for (let i = 0; i < totalCells; i++) {
-                gameStateArray[i] = InGameStateArray[i];
-            }
-
-            //updating the game UI
-            updateUI();
-
-            generationCounter++;
-
-            //updating generation UI
-            generationPara.innerHTML = generationCounter;
-
-
-        }, intervalTime);
-    }
+    autoGame();
 });
 
 //speed controlling variables
@@ -140,6 +113,38 @@ speedDown.addEventListener('click', () => {
 stop.addEventListener('click', () => {
     stopAuto();
 });
+
+const autoGame = ()=>{
+    if (AutoStartBool) {
+        AutoStartBool = false;
+
+        AutoGenInterval = setInterval(() => {
+
+            for (let i = 0; i < totalCells; i++)//resetting the in game state at every generation
+            {
+                InGameStateArray[i] = false;
+            }
+
+            //checking game state
+            checkGameState();
+
+            //updating gameStateArray
+            for (let i = 0; i < totalCells; i++) {
+                gameStateArray[i] = InGameStateArray[i];
+            }
+
+            //updating the game UI
+            updateUI();
+
+            generationCounter++;
+
+            //updating generation UI
+            generationPara.innerHTML = generationCounter;
+
+
+        }, intervalTime);
+    }
+}
 
 const checkDownRestriction = (i) => {
 
@@ -256,16 +261,12 @@ const UpdateSpeedAndGen = ()=>{
     generationPara.innerHTML = generationCounter;
 }
 
-//stopping the auto
 const stopAuto = () => {
     clearInterval(AutoGenInterval);
     AutoStartBool = true;
 }
 
-//resetting game
-const reset = document.querySelector('.reset-btn');
-
-reset.addEventListener('click', () => {
+const resetGame = ()=>{
     for (let i = 0; i < totalCells; i++) {
         gameStateArray[i] = false;
     }
@@ -278,4 +279,9 @@ reset.addEventListener('click', () => {
     intervalTime = 300;
 
     UpdateSpeedAndGen();
+}
+
+//resetting game
+reset.addEventListener('click', () => {
+    resetGame();
 })
